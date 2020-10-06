@@ -19,11 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Arduino.h"
 
-//Delete or comment line for monochrome display
-//Color display is still alpha, many things not working
-
 #define Display_SSD1351 1351 //Color 128x128
-#define Display_SSD1327 1327//Grayscale 128x128
 #define Display Display_SSD1351
 
 #if Display == Display_SSD1351
@@ -32,13 +28,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "SSD1351.h"
 #endif
 
-#if Display == Display_SSD1327
-#include <U8g2lib.h> //enable #define U8G2_16BIT in "u8g2.h"
-#endif
-
 //WiFi
-String ssid = "FRITZ!Box 6591 Cable CW";
-String password = "09806196161046264509";
+String ssid = "Fritz.Box";
+String password = "38577833350182975084";
 
 //Volumio
 String host = "volumio";
@@ -63,18 +55,18 @@ int port = 80;
 #define PIN_SPI_DC 21   //         DC  - 6
 
 //Left encoder
-#define PIN_LeftEncoder_SW 27 //blocks one touch pin
-#define PIN_LeftEncoder_DT 25
-#define PIN_LeftEncoder_CLK 26
+#define PIN_LeftEncoder_SW 26 //blocks one touch pin
+#define PIN_LeftEncoder_DT 22
+#define PIN_LeftEncoder_CLK 17
 
 //Right encoder
-#define PIN_RightEncoder_SW 33  //blocks one touch pin
-#define PIN_RightEncoder_DT 32  //blocks one touch pin
-#define PIN_RightEncoder_CLK 35 //not good, has no pullup, to be changed in future!
+#define PIN_RightEncoder_SW 25  //blocks one touch pin
+#define PIN_RightEncoder_DT 35  //blocks one touch pin
+#define PIN_RightEncoder_CLK 34 //not good, has no pullup, to be changed in future!
 
 //Min and Max possible volume on my System, standard would be 0-100
 int volumeMinimum = 0;
-int volumeMaximum = 40;
+int volumeMaximum = 100;
 
 //How often the volume is sent to Volumio when different
 long volumeSetInterval = 300; //ms
@@ -106,7 +98,7 @@ long delayScrollMenu = 1 * 1000; //ms
 long delayBackStatus = 30 * 1000; //ms
 
 //After x ms without operation switch display off, if not play (0 deactivates function)
-long delayDisplayOffWhenNotPlay = 60 * 1000; //ms
+long delayDisplayOffWhenNotPlay = 600 * 1000; //ms
 
 //After x ms without operation switch display off (0 deactivates function)
 long delayDisplayOff = 0; //ms
@@ -118,22 +110,8 @@ long delayDisplayOff = 0; //ms
 #define DisplayWidth 128
 #define DisplayHeight 128
 
-/*
-https://github.com/olikraus/u8g2/blob/master/doc/faq.txt#L159
-Q: How to activate 16 Bit mode?
-A: Search for the line
-//#define U8G2_16BIT
-in "u8g2.h". Uncomment this line:
-#define U8G2_16BIT
-The file "u8g2.h" is located in "/libraries/U8g2_Arduino/src/clib" inside your default
-sketch folder.
-*/
 #if Display == Display_SSD1351
 SSD1351 display = SSD1351();
-#endif
-
-#if Display == Display_SSD1327
-U8G2_SSD1327_WS_128X128_1_4W_HW_SPI display(U8G2_R0, PIN_SPI_CS, PIN_SPI_DC, U8X8_PIN_NONE);
 #endif
 
 /*#################################################################*\
@@ -147,8 +125,8 @@ U8G2_SSD1327_WS_128X128_1_4W_HW_SPI display(U8G2_R0, PIN_SPI_CS, PIN_SPI_DC, U8X
 #define MenuPixelWidth 128
 
 //https://github.com/olikraus/u8g2/wiki/fntlistall#u8g2-font-names
+
 #define MenuTextFont u8g2_font_t0_12_tf
 #define StatusTextFont u8g2_font_t0_12_tf
 #define ToastTextFont u8g2_font_t0_12_tf
-
 #define MenuIconFont u8g2_font_open_iconic_all_1x_t
