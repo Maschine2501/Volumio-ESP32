@@ -44,25 +44,25 @@ int port = 80;
 #define PIN_TOUCH4 13
 #define PIN_TOUCH5 12
 #define PIN_TOUCH6 14
-#define PIN_TOUCH7 27 //used by left encoder
-#define PIN_TOUCH8 33 //used by right encoder
-#define PIN_TOUCH9 32 //used by richt encoder
+#define PIN_TOUCH7 27
+#define PIN_TOUCH8 33
+#define PIN_TOUCH9 32
 
 //Display-pins
-#define PIN_SPI_MOSI 23 //VSPID    DIN - 3
-#define PIN_SPI_CLK 18  //VSPICLK  CLK - 4
-#define PIN_SPI_CS 5    //VSPICS0  CS  - 5
-#define PIN_SPI_DC 21   //         DC  - 6
+#define PIN_SPI_MOSI 23
+#define PIN_SPI_CLK 18
+#define PIN_SPI_CS 5
+#define PIN_SPI_DC 21
 
 //Left encoder
-#define PIN_LeftEncoder_SW 26 //blocks one touch pin
+#define PIN_LeftEncoder_SW 26
 #define PIN_LeftEncoder_DT 22
 #define PIN_LeftEncoder_CLK 17
 
 //Right encoder
-#define PIN_RightEncoder_SW 25  //blocks one touch pin
-#define PIN_RightEncoder_DT 35  //blocks one touch pin
-#define PIN_RightEncoder_CLK 34 //not good, has no pullup, to be changed in future!
+#define PIN_RightEncoder_SW 25
+#define PIN_RightEncoder_DT 35
+#define PIN_RightEncoder_CLK 34
 
 //Min and Max possible volume on my System, standard would be 0-100
 int volumeMinimum = 0;
