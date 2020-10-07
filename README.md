@@ -7,19 +7,19 @@
 
 ## To-Do's:
 
-[ ] Remove all Monochrome Display parts 
+ [ ] Remove all Monochrome Display parts 
     -> Only support for ssd1351 (in progress)
     -> maybe support other (bigger) colour-Displays later
-[ ] Support for Album-Art from Volumio-API
+ [ ] Support for Album-Art from Volumio-API
     -> Think this will be a key element:[https://github.com/Bodmer/TJpg_Decoder](https://github.com/Bodmer/TJpg_Decoder)
-[ ] Multiple Layouts
+ [ ] Multiple Layouts
     -> selectable in Menu
-[ ] Support for "Status-LED's"
-[ ] Preconfiguration for (touch-) Button-Functions (play, pause, next...)
-[ ] Maybe a Preconfiguration-script for PC
+ [ ] Support for "Status-LED's"
+ [ ] Preconfiguration for (touch-) Button-Functions (play, pause, next...)
+ [ ] Maybe a Preconfiguration-script for PC
     -> Like the install.sh of NR1-UI
-[ ] add File-Format, Samplerate and Bitdepth
-[ ] Fill the Wiki
+ [ ] add File-Format, Samplerate and Bitdepth
+ [ ] Fill the Wiki
     -> Installation instructions
     -> Config- HowTo's
     -> etc.
