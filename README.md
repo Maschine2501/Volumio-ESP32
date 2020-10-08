@@ -8,7 +8,7 @@
 ## To-Do's:
 
 - [ ] Remove all Monochrome Display parts 
-    \n-> Only support for ssd1351 (in progress)
+\br    -> Only support for ssd1351 (in progress)
     -> maybe support other (bigger) colour-Displays later
 - [ ] Support for Album-Art from Volumio-API
     -> Think this will be a key element:[https://github.com/Bodmer/TJpg_Decoder](https://github.com/Bodmer/TJpg_Decoder)
