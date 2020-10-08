@@ -18,11 +18,15 @@
 - [ ] Preconfiguration for (touch-) Button-Functions (play, pause, next...)
 - [ ] Maybe a Preconfiguration-script for PC
     -> Like the install.sh of NR1-UI
-- [ ] add File-Format, Samplerate and Bitdepth
 - [ ] Fill the Wiki
     -> Installation instructions
     -> Config- HowTo's
     -> etc.
+
+## Allready done:
+
+- [x] added File-Format, Samplerate and Bitdepth to Main-Screen
+- [x] added a seccond "Main-Screen" which changes every x seconds
 
 ## [Wiring - Cabling](https://github.com/Maschine2501/Volumio-ESP32/wiki/Wiring)
 
