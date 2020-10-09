@@ -48,10 +48,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 \*#################################################################*/
 
 /*
-TouchPin touchPin0;
-TouchPin touchPin1;
-TouchPin touchPin2;
-TouchPin touchPin3;
+TouchPin TouchPin0;
+TouchPin TouchPin1;
+TouchPin TouchPin2;
+TouchPin TouchPin3;
+
 TouchPin touchPin4;
 TouchPin touchPin5;
 TouchPin touchPin6;
@@ -65,6 +66,11 @@ Encoder rightEncoder;
 
 DigitalPin leftSwitch;
 DigitalPin rightSwitch;
+
+DigitalPin TouchPin0;
+DigitalPin TouchPin1;
+DigitalPin TouchPin2;
+DigitalPin TouchPin3;
 
 Volumio volumio;
 UiElements ui;

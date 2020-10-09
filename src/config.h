@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 //WiFi
 String ssid = "Fritz.Box";
-String password = "YOUR WIFI Password";
+String password = "38577833350182975084";
 
 //Volumio
 String host = "volumio";
@@ -55,7 +55,7 @@ int port = 80;
 #define PIN_SPI_DC 21
 
 //Left encoder
-#define PIN_LeftEncoder_SW 26
+#define PIN_LeftEncoder_SW 26 
 #define PIN_LeftEncoder_DT 22
 #define PIN_LeftEncoder_CLK 17
 
