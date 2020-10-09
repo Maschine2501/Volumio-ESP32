@@ -23,6 +23,8 @@
 
 - [ ] Support for "Status-LED's"
 
+  -> https://github.com/DjamesSuhanko/EasyPCF8574
+
 - [ ] Preconfiguration for (touch-) Button-Functions (play, pause, next...)
 
 - [ ] Maybe a Preconfiguration-script for PC
