@@ -41,8 +41,14 @@
 
 ## Allready done:
 
+#### 08.10.2020:
 - [x] added File-Format, Samplerate and Bitdepth to Main-Screen
-- [x] added a seccond "Main-Screen" which changes every x seconds
+- [x] added a seccond "Main-Screen" which changes every 12 seconds
+
+#### 09.10.2020:
+- [x] disabled "stars"-Background
+- [x] changed colours of UI
+- [x] activated Buttons for: Play/Pause, Stop, Previous, Next (Updated Wiring)
 
 ## [Wiring - Cabling](https://github.com/Maschine2501/Volumio-ESP32/wiki/Wiring)
 
