@@ -672,6 +672,7 @@ void loop()
   \*#################################################################*/
 
   //Check if WiFi is connected. If not --> reconnect
+  /*
   while (WiFi.status() != WL_CONNECTED)
   {
     DEBUG_PRINT("Main: WiFi: Status: ");
@@ -679,8 +680,9 @@ void loop()
     DisplayMessage(locale.ESP.ConnectWiFi);
     delay(1000);
   }
-
-  /* while (WiFi.status() != WL_CONNECTED)
+  */
+  // /* 
+  while (WiFi.status() != WL_CONNECTED)
   {
     DEBUG_PRINT("Main: WiFi: Status: ");
     DEBUG_PRINTLN(WiFiStatusString());
@@ -731,7 +733,7 @@ void loop()
     DEBUG_PRINTLN(WiFi.localIP());
     DEBUG_PRINTLN();
   }
-*/
+//*/
   //Check if Volumio (SocketIO) is connected. If not --> reconnect
   while (!volumio.getConnected())
   {
