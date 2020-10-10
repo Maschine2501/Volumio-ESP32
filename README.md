@@ -50,6 +50,9 @@
 - [x] changed colours of UI
 - [x] activated Buttons for: Play/Pause, Stop, Previous, Next (Updated Wiring)
 
+#### 10.10.2020
+- [x] fixed Wifi "AUTH_FAIL" bug by reenabling [Code after Line 685](https://github.com/Maschine2501/Volumio-ESP32/blob/3154605cc0bf50a21a37f0314f13afc1339804dc/src/main.cpp#L685)
+
 ## [Wiring - Cabling](https://github.com/Maschine2501/Volumio-ESP32/wiki/Wiring)
 
 ## [Which Hardware is needed?](https://github.com/Maschine2501/Volumio-ESP32/wiki/Used-Hardware)
