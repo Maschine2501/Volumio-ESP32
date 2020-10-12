@@ -38,7 +38,7 @@ int port = 80;
 
 //Touch-pins
 #define PIN_TOUCH0 4
-#define PIN_TOUCH1 0
+#define PIN_TOUCH1 16
 #define PIN_TOUCH2 2
 #define PIN_TOUCH3 15
 #define PIN_TOUCH4 13
@@ -89,7 +89,7 @@ bool toastActivatesDisplay = true;
 long durationShowVolume = 2 * 1000; //ms
 
 //How long toest messages are displayed ( 0 deactivates toast display)
-long durationShowToast = 5 * 1000; //ms
+long durationShowToast = 0; //ms //5 * 1000;
 
 //How long menu must stand still until scrolling starts, when texts are too long (0 deactivates function)
 long delayScrollMenu = 1 * 1000; //ms
