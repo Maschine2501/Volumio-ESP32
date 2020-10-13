@@ -16,6 +16,8 @@
 - [ ] Support for Album-Art from Volumio-API
   
   -> Think this will be a key element:[https://github.com/Bodmer/TJpg_Decoder](https://github.com/Bodmer/TJpg_Decoder)
+      
+      -> Actually this is a lot more tricky then I thought...
 
 - [ ] Multiple Layouts
   
@@ -24,8 +26,6 @@
 - [ ] Support for "Status-LED's"
 
   -> https://github.com/DjamesSuhanko/EasyPCF8574
-
-- [ ] Preconfiguration for (touch-) Button-Functions (play, pause, next...)
 
 - [ ] Maybe a Preconfiguration-script for PC
 
@@ -52,6 +52,12 @@
 
 #### 10.10.2020
 - [x] fixed Wifi "AUTH_FAIL" bug by reenabling [Code after Line 685](https://github.com/Maschine2501/Volumio-ESP32/blob/3154605cc0bf50a21a37f0314f13afc1339804dc/src/main.cpp#L685)
+- [x] Preconfiguration for Button-Functions (play/pause, stop, prev & next)
+- [x] some changes in UI (Progress Bar, Volume Bar...)
+
+#### 13.10.2020
+- [x] Activated icons for play/pause/stop and repeat & shuffle (...added Glyphs in GrayScale Font)
+- [x] fixed Issue: When status stop samplerate/bitdepth was not displayed -> deactivated second screen when status stop
 
 ## [Wiring - Cabling](https://github.com/Maschine2501/Volumio-ESP32/wiki/Wiring)
 
