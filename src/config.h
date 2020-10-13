@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 //WiFi
 String ssid = "Fritz.Box";
-String password = "38577833350182975084";
+String password = "YOUR WIFI PASSWD";
 
 //Volumio
 String host = "volumio";
