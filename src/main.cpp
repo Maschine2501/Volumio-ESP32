@@ -51,6 +51,7 @@ void drawProgressBar(int x, int y, int widh, int lineThickness, int barThickness
   if (lineThickness > 0)
     display.drawBox(x + frameThickness + frameSpacing, y + frameThickness + frameSpacing + (thickest - lineThickness) / 2, widh - 2 * frameThickness - 2 * frameSpacing, lineThickness);
 
+  
   if (knobWidth > 0 && knobHeigth > 0)
   {
     display.drawBox(x + int(knobpos), y + frameThickness + frameSpacing, knobWidth, knobHeigth);
@@ -58,6 +59,7 @@ void drawProgressBar(int x, int y, int widh, int lineThickness, int barThickness
     if (int(barlen) > 0 && barThickness > 0)
       display.drawBox(x + frameThickness + frameSpacing, y + frameThickness + frameSpacing + (thickest - barThickness) / 2, int(knobpos), barThickness);
   }
+  
   else if (int(barlen) > 0 && barThickness > 0)
     display.drawBox(x + frameThickness + frameSpacing, y + frameThickness + frameSpacing + (thickest - barThickness) / 2, int(barlen), barThickness);
 }
@@ -67,7 +69,7 @@ void drawProgressBar(int x, int y, int widh, int style, float value)
   switch (style)
   {
   case 0:
-    drawProgressBar(x, y, widh, 1, 3, 0, 0, 5, 5, value);
+    drawProgressBar(x, y, widh, 0, 3, 0, 0, 0, 0, value); //(x, y, widh, 0, 3, 0, 0, 5, 5, value);
     break;
   case 1:
     drawProgressBar(x, y, widh, 0, 4, 1, 1, 0, 0, value);
@@ -82,7 +84,7 @@ void drawProgressBar(int x, int y, int widh, int style, float value)
 void DisplayMessage(String Message)
 {
 display.clearScreen();
-display.drawBitmap65k(9, 9, 110, 15, LogoVolumio65k);
+display.drawBitmap65k(0, 0, 128, 64, LogoBraun65k); //LogoVolumio65k); (9, 9, 110, 15, LogoBraun65k);
 
   // display.drawBitmap24bit(0, 0, 128, 128, Stars);
   // display.setColor(0, 0, 0);
@@ -90,7 +92,7 @@ display.drawBitmap65k(9, 9, 110, 15, LogoVolumio65k);
 
 display.setColor(255, 255, 255);
 int w = display.getUTF8Width(Message.c_str());
-display.drawUTF8((DisplayWidth - w) / 2, 3 * MenuItemHeight + MenuItemHeight - (MenuItemHeight - MenuTextHeight) / 2, Message.c_str());
+display.drawUTF8((DisplayWidth - w) / 2, 6 * MenuItemHeight + MenuItemHeight - (MenuItemHeight - MenuTextHeight) / 2, Message.c_str());
 display.flush();
 }
 
@@ -686,7 +688,8 @@ void loop()
   {
     DEBUG_PRINT("Main: WiFi: Status: ");
     DEBUG_PRINTLN(WiFiStatusString());
-
+    
+    //display.drawBitmap24bit(0, 0, 128, 128, Stars);
     DisplayMessage(locale.ESP.ConnectWiFi);
 
     int retrys = 0;
@@ -1066,6 +1069,7 @@ void loop()
     //Memorize last input timesamp for screensaver
     lastinput = now;
     //Activate display if not switched on
+    Serial.println("Touch 0 pressed");
     if (noDisplay)
       noDisplay = false;
     //Toggle play/pause
@@ -1079,6 +1083,7 @@ void loop()
   {
     //Memorize last input timesamp for screensaver
     lastinput = now;
+    Serial.println("Touch 1 pressed");
     //Activate display if not switched on
     if (noDisplay)
       noDisplay = false;
@@ -1093,6 +1098,7 @@ void loop()
   {
     //Memorize last input timesamp for screensaver
     lastinput = now;
+    Serial.println("Touch 2 pressed");
     //Activate display if not switched on
     if (noDisplay)
       noDisplay = false;
@@ -1107,6 +1113,7 @@ void loop()
   {
     //Memorize last input timesamp for screensaver
     lastinput = now;
+    Serial.println("Touch 3 pressed");
     //Activate display if not switched on
     if (noDisplay)
       noDisplay = false;
@@ -1335,9 +1342,13 @@ else
     //  display.drawBox(x, 96, 128, 32);
     display.setColor(255, 255, 255);
     //Draw status-icons (play/pause/strop and random and repeat)
-    int px = 8;
-    int py = MenuItemHeight - (MenuItemHeight - MenuTextHeight) / 2;
-    /*
+    int px = 35; //8;
+    int py = 104; //MenuItemHeight - (MenuItemHeight - MenuTextHeight) / 2;
+    int px2 = 90;
+    int py2 = 104;
+    int px3 = 85;
+    int py3 = 104;
+    
     display.setU8g2Font(MenuIconFont);
     if (volumio.State.status == "pause")
       display.drawUTF8(px, py, ICON_PAUSE);
@@ -1346,12 +1357,12 @@ else
     if (volumio.State.status == "stop")
       display.drawUTF8(px, py, ICON_STOP);
     if (volumio.State.random == "true")
-      display.drawUTF8(80, py, ICON_RANDOM);
+      display.drawUTF8(px2, py2, ICON_RANDOM); //(80, py, ICON_RANDOM);
     if (volumio.State.repeat == "true")
-      display.drawUTF8(104, py, ICON_REPEAT);
+      display.drawUTF8(px3, py3, ICON_REPEAT); //(104, py, ICON_REPEAT)
     //Draw texts
     display.setU8g2Font(StatusTextFont);
-*/
+    
     int textpos = 1;
     display.setColor(255, 255, 255);
     //  String line0 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -1450,21 +1461,23 @@ else
       float barBoxHeight = 8;
       int posy = MenuItemHeight * 5 + (MenuItemHeight - barBoxHeight) / 2;
       display.setColor(255, 255, 255);
-      display.drawBox(4, 120, 120, 4);
-      int pos = (int)(116.0 * SeekPercent);
+      display.drawBox(0, 122, 128, 4); //(4, 120, 120, 4);
+      int pos = (int)(128.0 * SeekPercent); //(int)(116.0 * SeekPercent);
       display.setColor(0, 255, 0); //(63, 164, 101);
-      display.drawBox(4, 120, pos, 4);
-      display.drawBox(pos, 120 - 2, 4, 4 + 2);
+      display.drawBox(0, 122, pos, 4); //(4, 120, pos, 4);
+      display.drawBox(pos, 122 - 2, 4, 6 + 2);  //(pos, 120 - 2, 4, 4 + 2);
       //   drawProgressBar(4, 128-16, DisplayWidth - 8, 0, SeekPercent);
       display.setColor(255, 255, 255);
       int trackMin = volumio.State.duration / 60;
       int trackSec = volumio.State.duration % 60;
-      String txt1 = String(trackMin) + ":" + ((trackSec < 10) ? "0" : "") + String(trackSec);
-      display.drawUTF8(DisplayWidth - 32, 16 * 7, txt1.c_str());
+      //String txt1 = String(trackMin) + ":" + ((trackSec < 10) ? "0" : "") + String(trackSec);
+      String txt1 = String((trackMin < 10) ? "0" : "") + String(trackMin) + ":" + ((trackSec < 10) ? "0" : "") + String(trackSec);
+      display.drawUTF8(96, 114, txt1.c_str()); //(DisplayWidth - 32, 16 * 7, txt1.c_str());
       int seekMin = int(volumio.State.seek / 1000.0) / 60;
       int seekSec = int(volumio.State.seek / 1000.0) % 60;
-      String txt2 = String(seekMin) + ":" + ((seekSec < 10) ? "0" : "") + String(seekSec);
-      display.drawUTF8(4, 16 * 7, txt2.c_str());
+      //String txt2 = String(seekMin) + ":" + ((seekSec < 10) ? "0" : "") + String(seekSec);
+      String txt2 = String((seekMin < 10) ? "0" : "") + String(seekMin) + ":" + ((seekSec < 10) ? "0" : "") + String(seekSec);
+      display.drawUTF8(0, 114, txt2.c_str()); //(4, 16 * 7, txt2.c_str());
     }
   }
   else
@@ -1544,8 +1557,13 @@ else
     //   float VolumePercent = float(volumio.State.volume) / (float)VolumeMaximum;
     float VolumePercent = float(newvolume) / (float)volumeMaximum;
     float barBoxHeight = 8;
+    display.setColor(0, 0, 0);
+    display.drawBox(0, 96, 128, 19);
+    display.setColor(255, 255, 255);
+    display.drawUTF8(43, 100, "Volume");
     int posy = MenuItemHeight * 5 + (MenuItemHeight - barBoxHeight) / 2;
     drawProgressBar(0, posy, DisplayWidth, 0, VolumePercent);
+    
   }
 }
 //display.clearScreen();
