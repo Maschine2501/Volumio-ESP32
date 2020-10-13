@@ -1,6 +1,9 @@
 ### Original Code can be found here:
 [drvolcano/Volumio-ESP32](https://github.com/drvolcano/Volumio-ESP32)
-[...on Volumio Forum...](https://community.volumio.org/t/wifi-remote-for-volumio-based-on-esp32-and-oled/39146)
+
+[And his project on Volumio Forum...](https://community.volumio.org/t/wifi-remote-for-volumio-based-on-esp32-and-oled/39146)
+
+And I want to honor the efforts of drvolcano, awesome work!!! 
 
 ## This is a moded Version...
 ### and actually under construction!
