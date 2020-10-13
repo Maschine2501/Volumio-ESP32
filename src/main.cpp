@@ -1344,12 +1344,12 @@ else
     //Draw status-icons (play/pause/strop and random and repeat)
     int px = 35; //8;
     int py = 104; //MenuItemHeight - (MenuItemHeight - MenuTextHeight) / 2;
-    int px2 = 90;
-    int py2 = 104;
-    int px3 = 85;
+    int px2 = 82;
+    int py2 = 103;
+    int px3 = 68;
     int py3 = 104;
     
-    display.setU8g2Font(MenuIconFont);
+    //display.setU8g2Font(MenuIconFont);
     if (volumio.State.status == "pause")
       display.drawUTF8(px, py, ICON_PAUSE);
     if (volumio.State.status == "play")
@@ -1372,8 +1372,93 @@ else
     
     uint32_t Now = millis();
     
-    if ((Now - LastTime) < 12000)
-    {
+    if (volumio.State.status != "stop")
+      if ((Now - LastTime) < 12000 && volumio.State.status != "stop")
+      {
+        splitter.initialize(volumio.State.artist, maxchars);
+        display.setColor(0, 255, 0); //(63, 164, 101);
+        while (splitter.next())
+        {
+          int width = display.getUTF8Width(splitter.line);
+          display.drawUTF8((DisplayWidth - width) / 2, 16 * textpos++, splitter.line);
+        }  
+        splitter.initialize(volumio.State.title, maxchars);
+        display.setColor(255, 255, 255);
+        while (splitter.next())
+        {
+          int width = display.getUTF8Width(splitter.line);
+          display.drawUTF8((DisplayWidth - width) / 2, 16 * textpos++, splitter.line);
+        }
+        if (volumio.State.album != "null")
+        {
+          splitter.initialize(volumio.State.album, maxchars);
+          display.setColor(0, 255, 0);
+          while (splitter.next())
+          {
+            int width = display.getUTF8Width(splitter.line);
+            display.drawUTF8((DisplayWidth - width) / 2, 16 * textpos++, splitter.line);
+          }
+        }
+        /*
+        //Split longer texts if they contain a "-" (often on webradio)
+        int splitIndex = volumio.State.title.indexOf(" - ");
+        */
+      }
+      if ((Now - LastTime) > 12000 && volumio.State.status != "stop")
+      {
+        //if ((Now - LastTime) < 24000)
+        //{
+        splitter.initialize(volumio.State.artist, maxchars);
+        display.setColor(0, 255, 0);
+        while (splitter.next())
+        {
+          int width = display.getUTF8Width(splitter.line);
+          display.drawUTF8((DisplayWidth - width) / 2, 16 * textpos++, splitter.line);
+        }  
+        splitter.initialize(volumio.State.title, maxchars);
+        display.setColor(255, 255, 255);
+        while (splitter.next())
+        {
+          int width = display.getUTF8Width(splitter.line);
+          display.drawUTF8((DisplayWidth - width) / 2, 16 * textpos++, splitter.line);
+        }
+        /*
+        //Split longer texts if they contain a "-" (often on webradio)
+        int splitIndex = volumio.State.title.indexOf(" - ");
+        */
+        /*String EmptLine = "  ";
+        splitter.initialize(EmptLine, maxchars);
+        display.setColor(63, 164, 101);
+        while (splitter.next())
+        {
+          int width = display.getUTF8Width(splitter.line);
+          display.drawUTF8((DisplayWidth - width) / 2, 16 * textpos++, splitter.line);
+        }*/
+        
+        String sampleBit = volumio.State.samplerate + " / " + volumio.State.bitdepth;
+        splitter.initialize(sampleBit, maxchars);
+        display.setColor(0, 255, 0);
+        while (splitter.next())
+        {
+          int width = display.getUTF8Width(splitter.line);
+          display.drawUTF8((DisplayWidth - width) / 2, 16 * textpos++, splitter.line);
+        }
+        splitter.initialize(volumio.State.trackType, maxchars);
+        display.setColor(255, 255, 255);
+        while (splitter.next())
+        {
+          int width = display.getUTF8Width(splitter.line);
+          display.drawUTF8((DisplayWidth - width) / 2, 16 * textpos++, splitter.line);
+        }
+        if ((Now - LastTime) >= 24000)
+          {                              
+            for (int i=0; i<1; i++){
+              LastTime = LastTime + 24000;
+            };
+          }
+      }
+    if (volumio.State.status == "stop")
+      {
       splitter.initialize(volumio.State.artist, maxchars);
       display.setColor(0, 255, 0); //(63, 164, 101);
       while (splitter.next())
@@ -1402,59 +1487,7 @@ else
       //Split longer texts if they contain a "-" (often on webradio)
       int splitIndex = volumio.State.title.indexOf(" - ");
       */
-    }
-    if ((Now - LastTime) > 12000)
-    {
-      //if ((Now - LastTime) < 24000)
-      //{
-      splitter.initialize(volumio.State.artist, maxchars);
-      display.setColor(0, 255, 0);
-      while (splitter.next())
-      {
-        int width = display.getUTF8Width(splitter.line);
-        display.drawUTF8((DisplayWidth - width) / 2, 16 * textpos++, splitter.line);
-      }  
-      splitter.initialize(volumio.State.title, maxchars);
-      display.setColor(255, 255, 255);
-      while (splitter.next())
-      {
-        int width = display.getUTF8Width(splitter.line);
-        display.drawUTF8((DisplayWidth - width) / 2, 16 * textpos++, splitter.line);
       }
-      /*
-      //Split longer texts if they contain a "-" (often on webradio)
-      int splitIndex = volumio.State.title.indexOf(" - ");
-      */
-      /*String EmptLine = "  ";
-      splitter.initialize(EmptLine, maxchars);
-      display.setColor(63, 164, 101);
-      while (splitter.next())
-      {
-        int width = display.getUTF8Width(splitter.line);
-        display.drawUTF8((DisplayWidth - width) / 2, 16 * textpos++, splitter.line);
-      }*/
-      String sampleBit = volumio.State.samplerate + " / " + volumio.State.bitdepth;
-      splitter.initialize(sampleBit, maxchars);
-      display.setColor(0, 255, 0);
-      while (splitter.next())
-      {
-        int width = display.getUTF8Width(splitter.line);
-        display.drawUTF8((DisplayWidth - width) / 2, 16 * textpos++, splitter.line);
-      }
-      splitter.initialize(volumio.State.trackType, maxchars);
-      display.setColor(255, 255, 255);
-      while (splitter.next())
-      {
-        int width = display.getUTF8Width(splitter.line);
-        display.drawUTF8((DisplayWidth - width) / 2, 16 * textpos++, splitter.line);
-      }
-      if ((Now - LastTime) >= 24000)
-        {                              
-          for (int i=0; i<1; i++){
-            LastTime = LastTime + 24000;
-          };
-        }
-    }
     if (volumio.State.duration > 0)
     {
       float SeekPercent = (float)volumio.State.seek / (float)volumio.State.duration / 1000.0;
